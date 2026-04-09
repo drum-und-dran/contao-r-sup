@@ -1,0 +1,22 @@
+{
+  "name": "dud/contao-r-sup",
+  "description": "Replaces (R) and ® with superscript ® in Contao frontend output.",
+  "type": "contao-bundle",
+  "license": "MIT",
+  "require": {
+    "php": "^8.2 || ^8.3 || ^8.4 || ^8.5",
+    "contao/core-bundle": "^5.7"
+  },
+  "autoload": {
+    "psr-4": {
+      "Dud\\ContaoRSupBundle\\": "src/"
+    }
+  },
+  "extra": {
+    "contao": {
+      "bundles": [
+        "Dud\\ContaoRSupBundle\\ContaoRSupBundle"
+      ]
+    }
+  }
+}
