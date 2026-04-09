@@ -19,7 +19,10 @@ class OutputFrontendTemplate
         $dom = new \DOMDocument('1.0', 'UTF-8');
 
         // Load HTML with encoding hint to preserve UTF-8 characters
-        $dom->loadHTML('<?xml encoding="UTF-8">' . $buffer, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
+	$dom->loadHTML(
+	    '<!DOCTYPE html><html><body>' . $buffer . '</body></html>',
+	    LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD
+	);
 
         $xpath = new \DOMXPath($dom);
 
@@ -64,6 +67,8 @@ class OutputFrontendTemplate
         }
 
         // Return processed HTML
-        return $dom->saveHTML();
+	$html = $dom->saveHTML();
+	$html = preg_replace('~^<!DOCTYPE.+?<body>|</body></html>$~s', '', $html);
+	return $html;
     }
 }
